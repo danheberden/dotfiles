@@ -1,9 +1,9 @@
 [user]
-  name = Ben Alman
-  email = EMAIL
+  name = Dan Heberden
+  email = GIT_EMAIL_HERE
 [github]
-  user = cowboy
-  token = TOKEN
+  user = danheberden
+  token = GIT_TOKEN_HERE
 [core]
   autocrlf = input
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
