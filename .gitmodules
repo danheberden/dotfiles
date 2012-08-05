@@ -16,3 +16,6 @@
 [submodule "libs/nave"]
 	path = libs/nave
 	url = git://github.com/isaacs/nave.git
+[submodule "link/.vim/bundle/supertab"]
+	path = link/.vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
