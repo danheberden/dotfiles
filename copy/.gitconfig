@@ -7,7 +7,7 @@
 [core]
   autocrlf = input
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = /Users/cowboy/.dotfiles/conf/.gitignore_global
+  excludesfile = /Users/danheberden/.dotfiles/conf/.gitignore_global
 [apply]
   whitespace = fix
 [alias]
