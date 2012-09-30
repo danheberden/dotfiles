@@ -22,8 +22,11 @@
 # 32  42  green     36  46  cyan
 # 33  43  yellow    37  47  white
 #
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]]  && infocmp gnome-256color >/dev/null 2>&1; then export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then export TERM=xterm-256color
+
+if [[ $COLORTERM = gnome-* && $TERM = xterm ]]  && infocmp gnome-256color >/dev/null 2>&1; then
+  export TERM=gnome-256color
+elif [[ $TERM != dumb ]] && infocmp xterm-256color > /dev/null 2>&1; then 
+  export TERM=xterm-256color
 fi
 
 if [[ ! "${prompt_colors[@]}" ]]; then
@@ -75,7 +78,7 @@ fi
 
 # Inside a prompt function, run this alias to setup local $c0-$c9 color vars.
 # alias prompt_getcolors='prompt_colors[9]=; local i; for i in ${!prompt_colors[@]}; do local c$i="\[\e[0;${prompt_colors[$i]}m\]"; done; local cMagenta="$(tput setaf 172)";local cPink="$(tput setaf 9)"';
-alias prompt_getcolors='prompt_colors[10]=; local i; for i in ${!prompt_colors[@]}; do local c$i=${prompt_colors[$i]}; done;'
+alias prompt_getcolors='prompt_colors[10]=; local i; for i in ${!prompt_colors[@]}; do local c$i="\[${prompt_colors[$i]}\]"; done;'
 
 # Exit code of previous command.
 function prompt_exitcode() {
@@ -150,7 +153,12 @@ function prompt_command() {
   # PS1="$PS1$c1[$c0$(date +"%H$c1:$c0%M$c1:$c0%S")$c1]$c9"
   # exit code: 127
   PS1="$PS1$(prompt_exitcode "$exit_code")"
-  PS1="$PS1$c8$c5\$ $c9 "
+  if [[ "$SSH_TTY" ]]; then
+    # connected via ssh
+    PS1="$PS1$c8$c5\$ $c9 "
+  else
+    PS1="$PS1$c8$c5$(echo -e '\xe4\xbd\x95') $c9 "
+  fi
 }
 
 PROMPT_COMMAND="prompt_command"
