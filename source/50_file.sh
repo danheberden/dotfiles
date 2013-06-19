@@ -26,6 +26,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
 alias ..g='git rev-parse && cd "$(git rev-parse --show-cdup)"'
+alias lgrunt='./node_modules/.bin/grunt'
 
 # File size
 alias fs="stat -f '%z bytes'"
@@ -43,3 +44,13 @@ function md() {
 _Z_NO_PROMPT_COMMAND=1
 _Z_DATA=~/.dotfiles/caches/.z
 . ~/.dotfiles/libs/z/z.sh
+
+gif-ify() {
+  if [[ -n "$1" && -n "$2" ]]; then
+    ffmpeg -i $1 -pix_fmt rgb24 temp.gif
+    convert -layers Optimize temp.gif $2
+    rm temp.gif
+  else
+    echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
+  fi
+}

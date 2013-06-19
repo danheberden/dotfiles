@@ -5,7 +5,7 @@ set nocompatible
 set t_Co=256
 set background=dark 
 syntax on
-colorscheme badwolf
+colorscheme carebear
 set guifont=Menlo:h14:b
 
 " Enabled later, after Pathogen
@@ -222,7 +222,7 @@ au BufReadPost,BufNewFile * set relativenumber
 
 " Emulate bundles, allow plugins to live independantly. Easier to manage.
 call pathogen#runtime_append_all_bundles()
-filetype plugin indent on
+" filetype plugin indent on
 
 " Markdown
 augroup mkd
@@ -310,6 +310,12 @@ map! <S-Insert> <MiddleMouse>
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
 imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
+" Set tabs to 8 spaces
+nmap <leader>t8 :set tabstop=8 softtabstop=8 sw=8 noexpandtab<CR>
+
+" Set tabs to 2 spaces
+nmap <leader>t2 :set tabstop=2 softtabstop=2 sw=2 noexpandtab<CR>
+
 " format the entire file
 nmap <leader>fef ggVG=
 
@@ -364,4 +370,11 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+let g:markdown_fenced_languages = ['ruby', 'javascript','erb=eruby', 'html']
+" autocmd BufRead,BufNewFile * syn match parens /[()]/ | hi parens ctermfg=cyan
 
+autocmd BufEnter * set nocindent
+
+" exit vim if nerdtree is all that's left on a close
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+filetype plugin indent on

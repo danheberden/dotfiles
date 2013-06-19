@@ -1,5 +1,6 @@
 # Add binaries into the path
-PATH=~/.dotfiles/bin:$PATH
+# PATH=~/.dotfiles/bin:/Applications/B2G.app/Contents/MacOS/:/usr/local/lib/adt/platform-tools/:$PATH
+PATH=~/.dotfiles/bin:/Applications/B2G.app/Contents/MacOS/:/usr/local/sbin/:$PATH
 export PATH
 
 # Source all files in ~/.dotfiles/source/

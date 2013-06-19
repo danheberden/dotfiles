@@ -8,6 +8,10 @@ export PATH
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
+alias showhidden="defaults write com.apple.Finder AppleShowAllFiles YES; killall Finder;"
+alias hidehidden="defaults write com.apple.Finder AppleShowAllFiles NO; killall Finder;"
+
+
 # Make 'less' more.
 eval "$(lesspipe.sh)"
 
