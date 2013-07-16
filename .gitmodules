@@ -25,3 +25,6 @@
 [submodule "link/.vim/bundle/slantstatus"]
 	path = link/.vim/bundle/slantstatus
 	url = git@github.com:danheberden/vim-slantstatus.git
+[submodule "link/.vim/bundle/pathogen"]
+	path = link/.vim/bundle/pathogen
+	url = git@github.com:tpope/vim-pathogen.git
