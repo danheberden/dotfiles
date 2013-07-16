@@ -1,3 +1,5 @@
+execute pathogen#infect()
+
 " Make vim more useful
 set nocompatible
 
@@ -8,9 +10,6 @@ syntax on
 colorscheme carebear
 set guifont=Menlo:h14:b
 
-" Enabled later, after Pathogen
-filetype off
-
 " Change mapleader
 let mapleader=","
 
@@ -18,6 +17,57 @@ let mapleader=","
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
 set undodir=~/.vim/undo
+
+" Statusline Stuff
+"
+"set statusline=   "start
+"let g:sl = {}
+"let g:sl.index = 0
+"let g:sl.last = 0
+"let g:sl.side = 0
+"
+"function g:sl.highlight(suffix, bg, fg)
+"  execute 'syn match Statusline' . a:suffix . self.index ' "a^"'
+"  execute 'hi Statusline' . a:suffix . self.index . ' ctermbg=' . a:bg . ' ctermfg=' . a:fg
+"endfunction
+"
+"function! g:sl.segment(command, ...)
+"  if a:command =~ 'switch'
+"    let g:sl.side = 1
+"    execute 'set statusline+=%='
+"    return
+"  endif
+"
+"  let bg = 0 | let fg = 0
+"
+"  if !empty(a:2)
+"    let fg = a:2
+"  endif
+"
+"  if !empty(a:1)
+"    let bg = a:1
+"  endif
+"
+"  if g:sl.index > 0
+"    let connectorbg = self.last | let connectorfg = bg
+"    if self.side == 0
+"      let connectorbg = bg | let connectorfg = self.last
+"    endif
+"    call self.highlight('C', connectorbg, connectorfg)
+"    
+"    execute 'set statusline+=%#StatuslineC' . self.index . '#' . (g:sl.side == 1 ? '' : '')
+"  endif
+"
+"  let self.index = self.index + 1
+"
+"  let g:sl.last = bg
+"
+"  " Highlight this segment
+"  call g:sl.highlight('', bg, fg)
+"
+"  " Run command with this highlight
+"  execute 'set statusline+=%#Statusline' . g:sl.index . '#' . a:command
+"endfunction
 
 " Set some junk
 set autoindent " Copy indent from last line when starting new line.
@@ -28,7 +78,7 @@ set diffopt+=iwhite " Ignore whitespace changes (focus on code changes)
 set encoding=utf-8 nobomb " BOM often causes trouble
 set esckeys " Allow cursor keys in insert mode.
 set expandtab " Expand tabs to spaces
-set foldcolumn=4 " Column to show folds
+set foldcolumn=1 " Column to show folds
 set foldenable
 set foldlevel=2
 " set foldlevelstart=2 " Sets `foldlevel` when editing a new buffer
@@ -89,11 +139,6 @@ set wildmode=list:longest " Complete only until point of ambiguity.
 set winminheight=0 "Allow splits to be reduced to a single line.
 set wrapscan " Searches wrap around end of file
 
-" Status Line
-" hi User1 guibg=#455354 guifg=fg      ctermbg=238 ctermfg=fg  gui=bold,underline cterm=bold,underline term=bold,underline
-" hi User2 guibg=#455354 guifg=#CC4329 ctermbg=238 ctermfg=196 gui=bold           cterm=bold           term=bold
-" set statusline=[%n]\ %1*%<%.99t%*\ %2*%h%w%m%r%*%y[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]%=%-16(\ L%l,C%c\ %)%P
-let g:Powerline_symbols = 'fancy'
 
 " Speed up viewport scrolling
 nnoremap <C-e> 3<C-e>
@@ -220,10 +265,6 @@ autocmd BufReadPost *
 set relativenumber " Use relative line numbers. Current line is still in status bar.
 au BufReadPost,BufNewFile * set relativenumber
 
-" Emulate bundles, allow plugins to live independantly. Easier to manage.
-call pathogen#runtime_append_all_bundles()
-" filetype plugin indent on
-
 " Markdown
 augroup mkd
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:>
@@ -266,6 +307,25 @@ function! StripWhitespace ()
   exec ':%s/\s\+$//'
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
+
+call slantstatus#Segment('\ %{mode()}\ ', 20, 253)      " mode
+call slantstatus#Segment('%-3.3n', 244, 255)            " buffer number
+call slantstatus#Segment('', 241, 18)
+call slantstatus#Segment('\ %f', 237, 253)              " filename
+call slantstatus#Segment('switch', 0, 0)                " right-side
+call slantstatus#Segment('', 239, 232)
+call slantstatus#Segment('', 243, 232)
+call slantstatus#Segment('', 246, 232)
+call slantstatus#Segment('%14.(%l/%L,%c%V%)', 249, 232) " Line #, Total Line, Column
+call slantstatus#Segment('%3p%%', 172, 229)              " % of file
+
+" Other Typical Things
+"call sl#Segment('%h%m%r%w', 15, 0)                    " flags
+"call sl#Segment('%{strlen(&ft)?&ft:"none"})', 15, 0)  " filetype
+"call sl#Segment('%{strlen(&fenc)?&fenc:&enc}')        " encoding
+"call sl#Segment('%{&fileformat}', 15, 0)              " file format
+"call sl#Segment('%{synIDattr(synID(line("."),col("."),1),"name")}\', 15, 0) " highlight
+"call sl#Segment('%b,0x%-8B', 15, 0)                   " current char
 
 set gfn=Menlo\ Regular:h13
 setglobal rnu
@@ -378,3 +438,5 @@ autocmd BufEnter * set nocindent
 " exit vim if nerdtree is all that's left on a close
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 filetype plugin indent on
+
+

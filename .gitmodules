@@ -18,4 +18,10 @@
 	url = git://github.com/isaacs/nave.git
 [submodule "link/.vim/bundle/supertab"]
 	path = link/.vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
+        url = https://github.com/ervandew/supertab.git
+[submodule "link/.vim/bundle/nerdtree"]
+        path = link/.vim/bundle/nerdtree
+        url = https://github.com/scrooloose/nerdtree.git
+[submodule "link/.vim/bundle/slantstatus"]
+	path = link/.vim/bundle/slantstatus
+	url = git@github.com:danheberden/vim-slantstatus.git
