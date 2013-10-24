@@ -28,3 +28,6 @@
 [submodule "link/.vim/bundle/pathogen"]
 	path = link/.vim/bundle/pathogen
 	url = git@github.com:tpope/vim-pathogen.git
+[submodule "libs/rbenv-binstubs"]
+	path = libs/rbenv-binstubs
+	url = https://github.com/ianheggie/rbenv-binstubs.git

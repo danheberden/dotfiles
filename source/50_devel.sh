@@ -41,6 +41,7 @@ function npm_publish() {
 # rbenv init.
 PATH=$(path_remove ~/.dotfiles/libs/rbenv/bin):~/.dotfiles/libs/rbenv/bin
 PATH=$(path_remove ~/.dotfiles/libs/ruby-build/bin):~/.dotfiles/libs/ruby-build/bin
+PATH=$(path_remove ~/.dotfiles/libs/rbenv-binstubs/bin):~/.dotfiles/libs/rbenv-binstubs/bin
 
 if [[ "$(type -P rbenv)" && ! "$(type -t _rbenv)" ]]; then
   eval "$(rbenv init -)"

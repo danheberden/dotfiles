@@ -26,7 +26,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
 alias ..g='git rev-parse && cd "$(git rev-parse --show-cdup)"'
-alias lgrunt='./node_modules/.bin/grunt'
+alias mdtmp='cd $(mktemp -d /tmp/XXXX)'
 
 # File size
 alias fs="stat -f '%z bytes'"
