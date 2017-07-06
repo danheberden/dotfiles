@@ -23,7 +23,26 @@ fi
 # Create a new directory and enter it
 export JOURNAL_PATH="/Users/danheberden/Citadel/danheberden/.private/workjournal/"
 function journal() {
-  echo "$@" >> "$JOURNAL_PATH$(date +'%Y-%m-%d')" && history -d $(($HISTCMD-1))
+  echo "$@" >> "$JOURNAL_PATH$(date +'%Y-%m-%d')" && history -d $(($HISTCMD-2))
 }
 
 alias lsusb="system_profiler SPUSBDataType"
+function pgc() {
+  # get the passed keychain data
+  local PGC_KEYCHAIN="$(security find-generic-password -l $1)"
+
+  # parse the keychain for the account name and cut after the =
+  local PGC_USER=$(printf "$PGC_KEYCHAIN" | grep -a acct | cut -d '=' -f 2)
+  PGC_USER="${PGC_USER:1:${#PGC_USER}-2}" # remove the quotes
+
+  # parse the keychain for the service and cut after the =
+  local PGC_PATH=$(printf "$PGC_KEYCHAIN" | grep -a svce | cut -d '=' -f 2)
+  PGC_PATH="${PGC_PATH:1:${#PGC_PATH}-2}" # remove the quotes
+
+  # rerun to get the password
+  local PGC_PASS="$(security find-generic-password -l $1 -w)"
+
+  pgcli "postgres://$PGC_USER:$PGC_PASS@$PGC_PATH"
+}
+
+. ~/.ec2/nexus-environment

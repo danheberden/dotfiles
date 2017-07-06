@@ -47,4 +47,8 @@ if [[ "$(type -P rbenv)" && ! "$(type -t _rbenv)" ]]; then
   eval "$(rbenv init -)"
 fi
 
+[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+
+alias npmoffline="npm --cache-min 9999999 "
+
 source ~/.dotfiles/libs/git-completion.bash

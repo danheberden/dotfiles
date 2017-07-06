@@ -31,3 +31,15 @@
 [submodule "libs/rbenv-binstubs"]
 	path = libs/rbenv-binstubs
 	url = https://github.com/ianheggie/rbenv-binstubs.git
+[submodule "link/.vim/bundle/editorconfig"]
+	path = link/.vim/bundle/editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "link/.vim/bundle/vim-abolish"]
+	path = link/.vim/bundle/vim-abolish
+	url = git@github.com:tpope/vim-abolish.git
+[submodule "link/.vim/bundle/vim-jsx"]
+	path = link/.vim/bundle/vim-jsx
+	url = https://github.com/mxw/vim-jsx.git
+[submodule "link/.vim/bundle/vim-javascript"]
+	path = link/.vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git

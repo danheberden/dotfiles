@@ -93,9 +93,9 @@ let g:cb.scenery5  = [ '777777', 127 ]
 " regular text
 let g:cb.baseNormal =         [ 'D8D8D8', 15]
 " quoted strings, user input
-let g:cb.baseConspicuous =    [ 'F3CE8B', 143 ]
+let g:cb.baseConspicuous =    [ 'd9cec3', 252 ]
 " var, new, and other keywords
-let g:cb.keywordNormal =      [ 'A7D936', 143 ]
+let g:cb.keywordNormal =      [ 'A7D936', 41 ]
 " throw, return, delete
 let g:cb.keywordConspicuous = [ 'FC2F50', 167 ]
 " reserved variables, numbers, booleans
@@ -105,7 +105,7 @@ let g:cb.builtinConspicuous = [ 'AB85FC', 110 ]
 " arithmetic operators, brackets
 let g:cb.operatorNormal =     [ '09E665', 9 ]
 " conditional operators
-let g:cb.operatorConspicuous = ['BF3BB6', 173 ]
+let g:cb.operatorConspicuous = ['BF3BB6', 218 ]
 " function, if, for, else, while, braces
 let g:cb.controlNormal =      [ '117DBF', 110 ]
 " parens, commas
@@ -191,7 +191,7 @@ call HL('IncSearch', 'grayscale10', 'operatorConspicuous',    'bold')
 
 call HL('Underlined', 'fg', '', 'underline')
 
-call HL('StatusLine',   'grayscale10', 'operatorConspicuous',     'bold')
+call HL('StatusLine',   'grayscale2', 'grayscale6',     'none')
 call HL('StatusLineNC', 'grayscale0', 'grayscale5', 'bold')
 
 call HL('Directory', 'baseConspicuous', '', 'bold')
@@ -286,12 +286,18 @@ call HL('Error',  'grayscale0',   'keywordNormal', 'bold')
 call HL('Debug',  'grayscale0',   '',      'bold')
 call HL('Ignore', 'grayscale3', '',      '')
 
+" NERDTree Specific
+call HL('NERDTreePart', 'grayscale4')
+call HL('NERDTreeDir', 'grayscale1', '', 'bold')
+call HL('NERDTreeDirSlash', 'grayscale0', '', 'bold')
+call HL('NERDTreeFile', 'grayscale5', '')
+
+
 " }}}
 " Completion Menu {{{
 
 call HL('Pmenu', 'baseNormal', 'grayscale6')
 call HL('PmenuSel', 'grayscale10', 'operatorConspicuous', 'bold')
-call HL('PmenuSbar', '', 'grayscale6')
 call HL('PmenuThumb', 'grayscale1')
 
 " }}}
@@ -434,7 +440,7 @@ call HL('htmlTagName',        'operatorNormal', '', 'bold')
 call HL('htmlSpecialTagName', 'operatorNormal', '', 'bold')
 
 " Attributes
-call HL('htmlArg', 'operatorNormal', '', 'none')
+call HL('htmlArg', 'operatorConspicuous', '', 'none')
 
 " Stuff inside an <a> tag
 call HL('htmlLink', 'grayscale2', '', 'underline')
@@ -515,50 +521,55 @@ call HL('VimBracket', 'keywordConspicuous', '', 'none')
 
 
 
-call HL('javaScriptCommentTodo',      'grayscale2', '', 'none' )
-call HL('javaScriptLineComment',      'grayscale5', '', 'none' )
-call HL('javaScriptCommentSkip',      'grayscale4', '', 'none' )
-call HL('javaScriptComment',	      'grayscale6', '', 'none' )
-call HL('javaScriptSpecial',	      'wat', '', 'none' )
-call HL('javaScriptStringD',	      'common4', '', 'none' )
-call HL('javaScriptStringS',	      'common4', '', 'none' )
+call HL('jsCommentTodo',      'grayscale1', '', 'none' )
+call HL('jsLineComment',      'grayscale3', '', 'none' )
+call HL('jsCommentSkip',      'grayscale4', '', 'none' )
+call HL('jsComment',	      'grayscale3', '', 'none' )
+call HL('jsBlockComment',	      'grayscale3', '', 'none' )
+call HL('jsSpecial',	      'wat', '', 'none' )
+call HL('jsStringD',	      'common4', '', 'none' )
+call HL('jsStringS',	      'common4', '', 'none' )
 
-call HL('javaScriptSpecialCharacter', 'common1', '', 'bold' )
-call HL('javaScriptNumber', 	      'blue3', '', 'none' )
-call HL('javaScriptRegexpString',     'common4', '', 'none' )
+call HL('jsSpecialCharacter', 'common1', '', 'bold' )
+call HL('jsNumber', 	      'blue3', '', 'none' )
+call HL('jsRegexpString',     'common4', '', 'none' )
 
-call HL('javaScriptConditional',      'flow1', '', 'none' )
-call HL('javaScriptRepeat', 	      'flow1', '', 'none' )
-call HL('javaScriptBranch', 	      'flow2', '', 'none' )
-call HL('javaScriptOperator', 	      'notice3', '', 'none' )
-call HL('javaScriptType', 	      'notice4', '', 'none' )
-call HL('javaScriptStatement', 	      'notice3', '', 'none' )
-call HL('javaScriptBoolean', 	      'common1', '', 'none' )
-call HL('javaScriptNull', 	      'yellow2', '', 'none' )
-call HL('javaScriptIdentifier',       'notice3', '', 'none' )
-call HL('javaScriptLabel', 	      'notice2', '', 'none' )
-call HL('javaScriptException', 	      'flow1', '', 'none' )
-call HL('javaScriptMessage', 	      'notice4', '', 'none' )
-call HL('javaScriptGlobal', 	      'notice4', '', 'none' )
-call HL('javaScriptMember',	      'notice4', '', 'none' )
-call HL('javaScriptDeprecated',	      'notice4', '', 'none' )
-call HL('javaScriptReserved',	      'notice4', '', 'none' )
+call HL('jsConditional',      'flow1', '', 'none' )
+call HL('jsRepeat', 	      'flow1', '', 'none' )
+call HL('jsBranch', 	      'flow2', '', 'none' )
+call HL('jsOperator', 	      'notice3', '', 'none' )
+call HL('jsType', 	      'notice4', '', 'none' )
+call HL('jsStatement', 	      'notice3', '', 'none' )
+call HL('jsBoolean', 	      'common1', '', 'none' )
+call HL('jsNull', 	      'yellow2', '', 'none' )
+call HL('jsIdentifier',       'notice3', '', 'none' )
+call HL('jsLabel', 	      'notice2', '', 'none' )
+call HL('jsException', 	      'flow1', '', 'none' )
+call HL('jsMessage', 	      'notice4', '', 'none' )
+call HL('jsGlobal', 	      'notice4', '', 'none' )
+call HL('jsMember',	      'notice4', '', 'none' )
+call HL('jsDeprecated',	      'notice4', '', 'none' )
+call HL('jsReserved',	      'notice4', '', 'none' )
+call HL('Include',            'operatorConspicuous', '', 'none')
 
-call HL('javaScriptExit',             'notice1', '', 'none' )
-call HL('javaScriptScopeIdentifier',  'blue5', '' )
-call HL('javaScriptBrackets',         'flow3', '' )
-call HL('javaScriptArguments',        'notice2', '' )
-call HL('javaScriptPunctuation',      'flow3', '' )
-call HL('javaScriptPropertyAccessor', 'flow3', '', 'bold' )
-call HL('javaScriptGeneralOperator',   'blue2', '' )
-call HL('javaScriptLogicalOperator',  'notice3', '' )
-call HL('javaScriptComparitor',       'common3', '' )
-call HL('javaScriptAssignment',       'notice3', '' )       
+call HL('jsExit',             'notice1', '', 'none' )
+call HL('jsScopeIdentifier',  'blue5', '' )
+call HL('jsBrackets',         'flow3', '' )
+call HL('jsFuncArgs',        'notice2', '' )
+call HL('jsPunctuation',      'flow3', '' )
+call HL('jsPropertyAccessor', 'flow3', '', 'bold' )
+call HL('jsGeneralOperator',   'blue2', '' )
+call HL('jsLogicalOperator',  'notice3', '' )
+call HL('jsComparitor',       'common3', '' )
+call HL('jsAssignment',       'notice3', '' )       
 
-call HL('javaScriptObjectBrace', 'yellow3', '' )
-call HL('javaScriptObjectLabel', 'green3', '')
+call HL('jsObjectBrace', 'yellow3', '' )
+call HL('jsObjectLabel', 'green3', '')
 
-call HL('javaScriptFunction',         'flow1' , '', 'bold')  
-call HL('javaScriptBraces',           'flow1', '', 'none' )
-call HL('javaScriptParens',           'blue5', '', 'none' )
+call HL('jsFunction',         'flow1' , '', 'bold')  
+call HL('jsFuncCall',         'flow1' , '', 'bold')  
+call HL('jsFuncCall',         'flow1' , '', 'bold')  
+call HL('jsFuncCall',         'flow1' , '', 'bold')  
+call HL('jsBraces',           'flow1', '', 'none' )
+call HL('jsParens',           'blue5', '', 'none' )
 
